@@ -1,13 +1,33 @@
 import streamlit as st
 
-st.title("GPP Calculator")
+st.set_page_config(page_title="GPP Calculator", layout="centered")
+
+# CSS custom
+st.markdown("""
+<style>
+.big-title {
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+}
+.result-box {
+    font-size: 34px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown('<p class="big-title">GPP Calculator</p>', unsafe_allow_html=True)
 
 # Input
-lbs = st.number_input("LBS", value=0.0)
-gpp = st.number_input("GPP", value=0.0)
+lbs = st.number_input("LBS", min_value=0, step=1)
+gpp = st.number_input("GPP", min_value=0, step=1)
 
-# Arrow
-arrow = lbs * gpp * 0.0647989
+# Arrow (tanpa desimal)
+arrow = round(lbs * gpp * 0.0647989)
 
 # Spine logic
 spine = ""
@@ -31,5 +51,6 @@ elif 66 <= lbs <= 69:
 elif 70 <= lbs <= 100:
     spine = 200
 
-st.write("Arrow:", round(arrow, 2))
-st.write("Spine:", spine)
+# Output besar
+st.markdown(f'<div class="result-box">Arrow: {arrow}</div>', unsafe_allow_html=True)
+st.markdown(f'<div class="result-box">Spine: {spine}</div>', unsafe_allow_html=True)
