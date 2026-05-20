@@ -51,7 +51,7 @@ with col1:
 with col2:
     gpp = st.number_input("GPP", min_value=0, step=1)
 
-# Arrow (tanpa desimal)
+# Arrow calculation
 arrow = round(lbs * gpp * 0.0647989)
 
 # Spine logic
@@ -76,12 +76,13 @@ elif 66 <= lbs <= 69:
 elif 70 <= lbs <= 100:
     spine = 200
 
-# Output
+# Output Arrow
 st.markdown(
-    f'<div class="result-box">Arrow: {arrow}</div>',
+    f'<div class="result-box">Arrow: {arrow:,} gram</div>',
     unsafe_allow_html=True
 )
 
+# Output Spine
 st.markdown(
     f'<div class="result-box">Spine: {spine}</div>',
     unsafe_allow_html=True
