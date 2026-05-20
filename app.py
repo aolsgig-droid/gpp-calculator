@@ -2,29 +2,54 @@ import streamlit as st
 
 st.set_page_config(page_title="GPP Calculator", layout="centered")
 
-# CSS custom
+# Custom CSS
 st.markdown("""
 <style>
 .big-title {
-    font-size: 42px;
+    font-size: 44px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+label {
+    font-size: 28px !important;
+    font-weight: bold !important;
+}
+
+div[data-baseweb="input"] input {
+    font-size: 30px !important;
+    height: 60px !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+.result-box {
+    font-size: 36px;
     font-weight: bold;
     text-align: center;
-}
-.result-box {
-    font-size: 34px;
-    font-weight: bold;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    background-color: #f4f4f4;
 }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<p class="big-title">GPP Calculator</p>', unsafe_allow_html=True)
+# Title
+st.markdown(
+    '<p class="big-title">GPP CALCULATOR</p>',
+    unsafe_allow_html=True
+)
 
-# Input
-lbs = st.number_input("LBS", min_value=0, step=1)
-gpp = st.number_input("GPP", min_value=0, step=1)
+# Input pakai 2 kolom
+col1, col2 = st.columns(2)
+
+with col1:
+    lbs = st.number_input("LBS", min_value=0, step=1)
+
+with col2:
+    gpp = st.number_input("GPP", min_value=0, step=1)
 
 # Arrow (tanpa desimal)
 arrow = round(lbs * gpp * 0.0647989)
@@ -51,6 +76,13 @@ elif 66 <= lbs <= 69:
 elif 70 <= lbs <= 100:
     spine = 200
 
-# Output besar
-st.markdown(f'<div class="result-box">Arrow: {arrow}</div>', unsafe_allow_html=True)
-st.markdown(f'<div class="result-box">Spine: {spine}</div>', unsafe_allow_html=True)
+# Output
+st.markdown(
+    f'<div class="result-box">Arrow: {arrow}</div>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f'<div class="result-box">Spine: {spine}</div>',
+    unsafe_allow_html=True
+)
